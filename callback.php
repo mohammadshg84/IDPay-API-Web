@@ -63,15 +63,15 @@ function idpay_payment_get_inquiry($response) {
       empty($result->status)) {
 
     print 'Exception message:';
-    print '<pre>';
-    print_r($result);
-    print '</pre>';
+    //print '<pre>';
+    //print_r($result);
+    //print '</pre>';
 
     return FALSE;
   }
 
   if ($result->status == 10) {
-    //return TRUE;
+    return TRUE;
   }
 
   print idpay_payment_get_message($result->status);
@@ -79,6 +79,11 @@ function idpay_payment_get_inquiry($response) {
   return FALSE;
 }
 
+
+/**
+ * @param array $response
+ * @return bool
+ */
 function idpay_payment_verify($response) {
 
   $header = array(
@@ -147,6 +152,6 @@ function idpay_payment_get_message($status) {
       return 'پرداخت قبلاً تایید شده است';
 
     default:
-      return 'Error';
+      return 'Error ';
   }
 }
