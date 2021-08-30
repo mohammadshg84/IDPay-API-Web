@@ -3,8 +3,8 @@
 echo ('درحال انتقال به درگاه پرداخت...');
 
 $amount = $_GET['amount'];
-$name = "وب سرویس";
-$desc = "توضیحات پرداخت";
+$name = "NAME";
+$desc = "DESCRIPTION";
 require_once('variables.php');
 
 $params = array(
