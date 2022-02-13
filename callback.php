@@ -2,30 +2,25 @@
 
 require_once('variables.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-{
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = $_POST;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') 
-{
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $response = $_GET;
 }
 
-if (empty($response['status']) || empty($response['id']) || empty($response['track_id']) || empty($response['order_id']))
-{
+if (empty($response['status']) || empty($response['id']) || empty($response['track_id']) || empty($response['order_id'])) {
     return FALSE;
 }
 
-if ($response['status'] != 10)
-{
+if ($response['status'] != 10) {
     print idpay_payment_get_message($response['status']);
 }
 
 $inquiry = idpay_payment_get_inquiry($response);
 
-if ($inquiry)
-{
+if ($inquiry) {
     $verify = idpay_payment_verify($response);
 }
 
@@ -34,7 +29,7 @@ if ($inquiry)
  * @return bool
 */
 
-function idpay_payment_get_inquiry($response) 
+function idpay_payment_get_inquiry($response)
 {
     $header = array(
         'Content-Type: application/json',
@@ -58,17 +53,15 @@ function idpay_payment_get_inquiry($response)
 
     $result = json_decode($result);
 
-    if (empty($result) || empty($result->status))
-    {
+    if (empty($result) || empty($result->status)) {
         print 'Exception message:';
         print '<pre>';
         print_r($result);
         print '</pre>';
         return FALSE;
     }
-  
-    if ($result->status == 10)
-    {
+
+    if ($result->status == 10) {
         return TRUE;
     }
 
@@ -107,8 +100,7 @@ function idpay_payment_verify($response)
 
     $result = json_decode($result);
 
-    if (empty($result) || empty($result->status))
-    {
+    if (empty($result) || empty($result->status)) {
         print 'Exception message:';
         print '<pre>';
         print_r($result);
@@ -128,27 +120,26 @@ function idpay_payment_verify($response)
 */
 function idpay_payment_get_message($status)
 {
-    switch ($status) 
-    {
+    switch ($status) {
         case 1:
-                return 'پرداخت انجام نشده است';
+            return 'پرداخت انجام نشده است';
 
         case 2:
-                return 'پرداخت ناموفق بوده است';
+            return 'پرداخت ناموفق بوده است';
 
         case 3:
-                return 'خطا رخ داده است';
+            return 'خطا رخ داده است';
 
         case 10:
-                return 'در انتظار تایید پرداخت';
+            return 'در انتظار تایید پرداخت';
 
         case 100:
-                return 'پرداخت تایید شده است';
+            return 'پرداخت تایید شده است';
 
         case 101:
-                return 'پرداخت قبلاً تایید شده است';
+            return 'پرداخت قبلاً تایید شده است';
 
         default:
-        return 'Error ';
+            return 'Error ';
     }
 }
