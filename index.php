@@ -18,8 +18,9 @@ $params = array(
 
 idpay_payment_create($params);
 
-function idpay_payment_create($params) {
-    $header = array (
+function idpay_payment_create($params)
+{
+    $header = array(
         'Content-Type: application/json',
         'X-API-KEY:' . APIKEY,
         'X-SANDBOX:' . SANDBOX,
@@ -36,15 +37,14 @@ function idpay_payment_create($params) {
 
     $result = json_decode($result);
 
-    if (empty($result) || empty($result->link))
-    {
+    if (empty($result) || empty($result->link)) {
         print 'Exception message:';
         print '<pre>';
         print_r($result);
         print '</pre>';
         return FALSE;
     }
-  
+
     //Redirect to payment form
     header('Location:' . $result->link);
 }
