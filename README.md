@@ -1,2 +1,2 @@
 # IDPay-API
-Communication with IDPay gateway API
+IDPay gateway API
