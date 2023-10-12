@@ -1,7 +1,5 @@
 <?php
 
-echo ('درحال انتقال به درگاه پرداخت...');
-
 $amount = $_GET['amount'];
 $name = "NAME";
 $desc = "DESCRIPTION";
@@ -44,7 +42,6 @@ function idpay_payment_create($params)
         print '</pre>';
         return FALSE;
     }
-
-    //Redirect to payment form
+    
     header('Location:' . $result->link);
 }
