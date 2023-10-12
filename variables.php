@@ -1,5 +1,5 @@
 <?php
-define('URL_CALLBACK', 'http://YOUR-DOMAIN/callback.php');
+define('URL_CALLBACK', 'https://YOUR-DOMAIN/callback.php');
 
 define('URL_PAYMENT', 'https://api.idpay.ir/v1.1/payment');
 define('URL_INQUIRY', 'https://api.idpay.ir/v1.1/payment/inquiry');
